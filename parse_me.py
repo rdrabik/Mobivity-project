@@ -39,7 +39,6 @@ def real_parser(iostream):
       		address = re.search(r'(\d+)', line)
       		if(address):
       			r["address"] = line[:-1]
-      			nextName = False
 
       	if(zipcode and not r.get("zipcode")):
       		if(not(int(store) == int(zipcode.group())) ):
