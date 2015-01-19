@@ -22,7 +22,7 @@ def real_parser(iostream):
         m = re.match(r"Store #(?P<store>\d+) +(?:eat|tko|tkc) +(?P<month>\d\d)/(?P<day>\d\d)/(?P<year>\d+) (?P<hour>\d\d):(?P<minute>\d\d):(?P<second>\d\d) *\n", line)
         storeName = re.search(r'Subway' ,line)
         zipcode = re.search('([0-9]{5})',line)
-        phoneNumber = re.search('[2-9]\d{2}-\d{3}-\d{4}', line)
+        phoneNumber = re.search('[0-9]\d{2}-\d{3}-\d{4}', line)
 
         if m:
         	l.debug("match: %r", m.groups())
@@ -39,6 +39,7 @@ def real_parser(iostream):
       		address = re.search(r'(\d+)', line)
       		if(address):
       			r["address"] = line[:-1]
+      			findAddress = False
 
       	if(zipcode and not r.get("zipcode")):
       		if(not(int(store) == int(zipcode.group())) ):
